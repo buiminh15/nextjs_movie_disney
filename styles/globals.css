@@ -22,7 +22,7 @@ a {
 
 @layer base{
   body{
-      @apply bg-[#040714] text-[#f9f9f9]
+      @apply bg-[#040714] text-[#f9f9f9] scrollbar-hide
   }
 }
 

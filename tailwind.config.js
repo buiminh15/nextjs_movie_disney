@@ -14,5 +14,5 @@ module.exports = {
     //   body: ["Mulish", "sans-serif"],
     // },
   },
-  // plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

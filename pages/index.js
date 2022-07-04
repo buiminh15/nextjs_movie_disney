@@ -1,11 +1,19 @@
-import { Header, Hero, Slider } from "../components";
+import { Brands, Header, Hero, MovieCollection, Slider } from "../components";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { useState } from "react";
 import { firebaseApp } from "../firebase";
-export default function Home() {
+import Head from "next/head";
+import { TITLES } from "../utils/constant";
+import { CATEGORIES, fetchMovies, TYPES } from "../utils/fetchs";
+export default function Home({
+  nowPlayingMovies,
+  popularMovies,
+  popularShows,
+  top_ratedMovies,
+  top_ratedShows,
+}) {
   const auth = getAuth(firebaseApp);
   const [user, setUser] = useState(null);
-
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setUser(user);
@@ -16,14 +24,63 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Disney+</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header loggedInUser={user} />
       {!user ? (
         <Hero />
       ) : (
         <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:z-[-1]">
           <Slider />
+          <Brands />
+          <MovieCollection
+            title={TITLES.NOW_PLAYING}
+            results={nowPlayingMovies}
+          />
         </main>
       )}
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const [
+    nowPlayingMoviesRes,
+    popularMoviesRes,
+    popularShowsRes,
+    top_ratedMoviesRes,
+    top_ratedShowsRes,
+  ] = await Promise.all([
+    fetchMovies(TYPES.MOVIE, CATEGORIES.NOW_PLAYING),
+    fetchMovies(TYPES.MOVIE, CATEGORIES.POPULAR),
+    fetchMovies(TYPES.TV, CATEGORIES.POPULAR),
+    fetchMovies(TYPES.MOVIE, CATEGORIES.TOP_RATED),
+    fetchMovies(TYPES.TV, CATEGORIES.TOP_RATED),
+  ]);
+
+  const [
+    nowPlayingMovies,
+    popularMovies,
+    popularShows,
+    top_ratedMovies,
+    top_ratedShows,
+  ] = await Promise.all([
+    nowPlayingMoviesRes.json(),
+    popularMoviesRes.json(),
+    popularShowsRes.json(),
+    top_ratedMoviesRes.json(),
+    top_ratedShowsRes.json(),
+  ]);
+
+  return {
+    props: {
+      nowPlayingMovies: nowPlayingMovies.results,
+      popularMovies: popularMovies.results,
+      popularShows: popularShows.results,
+      top_ratedMovies: top_ratedMovies.results,
+      top_ratedShows: top_ratedShows.results,
+    },
+  };
 }
