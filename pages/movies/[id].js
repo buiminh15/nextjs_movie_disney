@@ -12,10 +12,14 @@ import { getValueStorage, KEYS } from "../../utils/storage";
 
 function Movie({ result }) {
   const [showPlayer, setShowPlayer] = useState(false);
+  const [user, setUser] = useState();
+  
+  useEffect(() => {
+    setUser(JSON.parse(getValueStorage(KEYS.USER))[0])
+  }, [])
   const index = result.videos.results.findIndex(
     (element) => element.type === "Trailer"
   );
-  const user = JSON.parse(getValueStorage(KEYS.USER))[0] || undefined;
   return (
     <div>
       <Head>
