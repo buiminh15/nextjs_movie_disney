@@ -1,36 +1,22 @@
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { firebaseApp } from "../firebase";
 import {
-  clearStorage,
-  KEYS,
-  saveValueStorage,
-  userAccessToken,
-} from "../utils/storage";
-import {
-  SearchIcon,
   HomeIcon,
-  PlusIcon,
-  StarIcon,
+  PlusIcon, SearchIcon, StarIcon
 } from "@heroicons/react/solid";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { firebaseApp } from "../firebase";
 
 function Header({ loggedInUser }) {
   const router = useRouter();
   const auth = getAuth(firebaseApp);
   const provider = new GoogleAuthProvider();
   const signIn = async () => {
-    const { user } = await signInWithPopup(auth, provider);
-    const { refreshToken, providerData } = user;
-    saveValueStorage(KEYS.ACCESS_TOKEN, refreshToken);
-    saveValueStorage(KEYS.USER, providerData);
-
+    await signInWithPopup(auth, provider);
     router.push("/");
   };
 
   const signOut = async () => {
-    clearStorage();
     await auth.signOut();
   };
 

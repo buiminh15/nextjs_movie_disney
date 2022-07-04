@@ -1,20 +1,16 @@
 import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import { Header, Hero } from "../../components";
+import { useAppContext } from "../../context/state";
 import { BASE_URL, YOUTUBE_URL } from "../../utils/constant";
 import { fetchMovie } from "../../utils/fetchs";
-import { getValueStorage, KEYS } from "../../utils/storage";
 
 function Movie({ result }) {
   const [showPlayer, setShowPlayer] = useState(false);
-  const [user, setUser] = useState();
-  
-  useEffect(() => {
-    setUser(JSON.parse(getValueStorage(KEYS.USER))[0])
-  }, [])
+  const { user } = useAppContext();
   const index = result.videos.results.findIndex(
     (element) => element.type === "Trailer"
   );

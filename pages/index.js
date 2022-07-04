@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Brands, Header, Hero, MovieCollection, Slider } from "../components";
+import { useAppContext } from "../context/state";
 import useUserStatus from "../hooks/useUserStatus";
 import { TITLES } from "../utils/constant";
 import { CATEGORIES, fetchMovies, TYPES } from "../utils/fetchs";
@@ -11,7 +12,8 @@ export default function Home({
   top_ratedMovies,
   top_ratedShows,
 }) {
-  const {user} = useUserStatus();
+  useUserStatus();
+  const { user } = useAppContext();
 
   return (
     <div>
