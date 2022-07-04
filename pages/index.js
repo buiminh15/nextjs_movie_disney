@@ -38,6 +38,27 @@ export default function Home({
           <MovieCollection
             title={TITLES.NOW_PLAYING}
             results={nowPlayingMovies}
+            type={TYPES.MOVIE}
+          />
+          <MovieCollection
+            title={TITLES.POPULAR_MOVIES}
+            results={popularMovies}
+            type={TYPES.MOVIE}
+          />
+          <MovieCollection
+            title={TITLES.POPULAR_SHOWS}
+            results={popularShows}
+            type={TYPES.TV}
+          />
+          <MovieCollection
+            title={TITLES.TOP_RATED_MOVIES}
+            results={top_ratedMovies}
+            type={TYPES.MOVIE}
+          />
+          <MovieCollection
+            title={TITLES.TOP_RATED_SHOWS}
+            results={top_ratedShows}
+            type={TYPES.TV}
           />
         </main>
       )}

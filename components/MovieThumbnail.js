@@ -1,10 +1,16 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 import { BASE_URL } from "../utils/constant";
 
-function MovieThumbnail({ result }) {
+function MovieThumbnail({ result, type }) {
+  const router = useRouter();
+
   return (
-    <div className="cursor-pointer min-w-[250px] min-h-[170px] overflow-hidden md:min-w-[330px] md:min-h-[210px] rounded-lg shadow-xl border-[3px] border-[#f9f9f9] border-opacity-10 hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300">
+    <div
+      className="flex min-w-[250px] min-h-[180px] md:min-w-[330px] md:min-h-[210px] rounded-lg overflow-hidden shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10  hover:border-opacity-80 hover:shadow-2xl transform transition duration-300"
+      onClick={() => router.push(`/movies/${result.id}?type=${type}`)}
+    >
       <Image
         src={`${BASE_URL}${result.backdrop_path || result.poster_path}`}
         width={330}

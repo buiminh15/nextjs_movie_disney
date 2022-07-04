@@ -1,15 +1,13 @@
 import React from "react";
 import MovieThumbnail from "./MovieThumbnail";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-function MovieCollection({ title, results }) {
+function MovieCollection({ title, results, type }) {
   return (
-    <section className="px-20 mt-6">
-      <h2 className="font-semibold mb-4">{title}</h2>
-      <div className="flex space-x-6">
-        {results.map((r) => (
-          <MovieThumbnail key={r.id} result={r} />
-        ))}
+    <section className="px-20 mb-8">
+      <h2 className="font-semibold mb-3">{title}</h2>
+      <div className="flex space-x-6 overflow-x-scroll overflow-y-hidden">
+          {results.map((r) => (
+            <MovieThumbnail key={r.id} result={r} type={type}/>
+          ))}
       </div>
     </section>
   );

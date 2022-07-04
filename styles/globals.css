@@ -11,14 +11,31 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #1e2230;
+  border: solid 30px transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f1f1f1;
+  border-radius: 100vh;
+  border: solid 3px transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #919191;
+}
+
 
 @layer base{
   body{

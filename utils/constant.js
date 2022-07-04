@@ -1,5 +1,5 @@
 const BASE_URL = "https://image.tmdb.org/t/p/original";
-
+const YOUTUBE_URL = "https://www.youtube.com/watch?v="
 const TITLES = {
   NOW_PLAYING: "Now Playing Movies",
   POPULAR_MOVIES: "Popular Movies",
@@ -8,4 +8,4 @@ const TITLES = {
   TOP_RATED_SHOWS: "Top Rated Shows",
 };
 
-export { BASE_URL, TITLES };
+export { BASE_URL, TITLES, YOUTUBE_URL };

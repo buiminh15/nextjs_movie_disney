@@ -4,6 +4,7 @@ const TYPES = {
   TV: "tv",
 };
 const QUERY = `?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`;
+const QUERY_MOVIE = `?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&append_to_response=videos`;
 
 const CATEGORIES = {
   NOW_PLAYING: "/now_playing",
@@ -15,4 +16,8 @@ const fetchMovies = (type, category) => {
   return fetch(`${BASE_URL}${type}${category}${QUERY}`);
 };
 
-export { TYPES, CATEGORIES, fetchMovies };
+const fetchMovie = (id, type) => {
+  return fetch(`${BASE_URL}${type}/${id}${QUERY_MOVIE}`);
+}
+
+export { TYPES, CATEGORIES, fetchMovies, fetchMovie };
