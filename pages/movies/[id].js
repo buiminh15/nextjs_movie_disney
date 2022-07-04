@@ -1,13 +1,11 @@
+import { PlusIcon, XIcon } from "@heroicons/react/solid";
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import ReactPlayer from "react-player/lazy";
 import { Header, Hero } from "../../components";
 import { BASE_URL, YOUTUBE_URL } from "../../utils/constant";
 import { fetchMovie } from "../../utils/fetchs";
-import { PlusIcon, XIcon } from "@heroicons/react/solid";
-import ReactPlayer from "react-player/lazy";
-import useUserStatus from "../../hooks/useUserStatus";
 import { getValueStorage, KEYS } from "../../utils/storage";
 
 function Movie({ result }) {
@@ -24,7 +22,7 @@ function Movie({ result }) {
     <div>
       <Head>
         <title>{result.title || result.original_name}</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header loggedInUser={user} />
       {!user ? (
