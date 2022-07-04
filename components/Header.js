@@ -1,13 +1,14 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { firebaseApp } from "../firebase";
-import { KEYS, saveValueStorage, userAccessToken } from "../utils/storage";
+import {
+  clearStorage,
+  KEYS,
+  saveValueStorage,
+  userAccessToken,
+} from "../utils/storage";
 import {
   SearchIcon,
   HomeIcon,
@@ -29,6 +30,7 @@ function Header({ loggedInUser }) {
   };
 
   const signOut = async () => {
+    clearStorage();
     await auth.signOut();
   };
 

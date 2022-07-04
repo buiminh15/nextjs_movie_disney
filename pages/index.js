@@ -1,10 +1,9 @@
 import { Brands, Header, Hero, MovieCollection, Slider } from "../components";
-import { onAuthStateChanged, getAuth } from "firebase/auth";
-import { useState } from "react";
-import { firebaseApp } from "../firebase";
 import Head from "next/head";
 import { TITLES } from "../utils/constant";
 import { CATEGORIES, fetchMovies, TYPES } from "../utils/fetchs";
+import useUserStatus from "../hooks/useUserStatus";
+
 export default function Home({
   nowPlayingMovies,
   popularMovies,
@@ -12,15 +11,7 @@ export default function Home({
   top_ratedMovies,
   top_ratedShows,
 }) {
-  const auth = getAuth(firebaseApp);
-  const [user, setUser] = useState(null);
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setUser(user);
-    } else {
-      setUser(null);
-    }
-  });
+  const {user} = useUserStatus();
 
   return (
     <div>
@@ -38,27 +29,27 @@ export default function Home({
           <MovieCollection
             title={TITLES.NOW_PLAYING}
             results={nowPlayingMovies}
-            type={TYPES.MOVIE}
+            typeCategory={TYPES.MOVIE}
           />
           <MovieCollection
             title={TITLES.POPULAR_MOVIES}
             results={popularMovies}
-            type={TYPES.MOVIE}
+            typeCategory={TYPES.MOVIE}
           />
           <MovieCollection
             title={TITLES.POPULAR_SHOWS}
             results={popularShows}
-            type={TYPES.TV}
+            typeCategory={TYPES.TV}
           />
           <MovieCollection
             title={TITLES.TOP_RATED_MOVIES}
             results={top_ratedMovies}
-            type={TYPES.MOVIE}
+            typeCategory={TYPES.MOVIE}
           />
           <MovieCollection
             title={TITLES.TOP_RATED_SHOWS}
             results={top_ratedShows}
-            type={TYPES.TV}
+            typeCategory={TYPES.TV}
           />
         </main>
       )}

@@ -11,6 +11,7 @@ function Hero() {
       </Head>
       <div className="relative min-h-[calc(100vh-72px)] flex items-center justify-center">
         <Image
+          priority
           src="/images/hero-background.jpg"
           layout="fill"
           objectFit="cover"
@@ -34,9 +35,9 @@ function Hero() {
             with a Disney+ subscription. As of 30th June 2022, the price of
             Disney+ and The Disney Bundle will increase by ₹100
           </p>
-          <Image 
-            src={'/images/cta-logo-two.png'}
-            objectFit='contain'
+          <Image
+            src={"/images/cta-logo-two.png"}
+            objectFit="contain"
             width={640}
             height={70}
             alt="brands"

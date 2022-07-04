@@ -17,6 +17,7 @@ const fetchMovies = (type, category) => {
 };
 
 const fetchMovie = (id, type) => {
+  console.log('dsdsd ', `${BASE_URL}${type}/${id}${QUERY_MOVIE}`)
   return fetch(`${BASE_URL}${type}/${id}${QUERY_MOVIE}`);
 }
 
