@@ -6,3 +6,5 @@ Technologies
 - Firebase
 - Tailwindcss
 
+Link: https://nextjs-movie-disney.vercel.app/
+
