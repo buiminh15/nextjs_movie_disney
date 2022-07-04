@@ -11,13 +11,13 @@ import { fetchMovie } from "../../utils/fetchs";
 function Movie({ result }) {
   const [showPlayer, setShowPlayer] = useState(false);
   const { user } = useAppContext();
-  const index = result.videos.results.findIndex(
+  const index = result?.videos.results.findIndex(
     (element) => element.type === "Trailer"
   );
   return (
     <div>
       <Head>
-        <title>{result.title || result.original_name}</title>
+        <title>{result?.title || result?.original_name}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header loggedInUser={user} />
@@ -27,14 +27,14 @@ function Movie({ result }) {
         <section>
           <div className="relative min-h-[calc(100vh-72px)]">
             <Image
-              src={`${BASE_URL}${result.backdrop_path || result.poster_path}`}
+              src={`${BASE_URL}${result?.backdrop_path || result?.poster_path}`}
               alt="poster"
               layout="fill"
               objectFit="cover"
             />
             <div className="absolute inset-y-28 md:inset-y-auto md:bottom-10 inset-x-4 md:inset-x-12 space-y-6">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-                {result.title || result.original_name}
+                {result?.title || result?.original_name}
               </h1>
               {/* group buttons */}
               <div className="flex space-x-3 md:space-x-5 items-center">
@@ -73,13 +73,13 @@ function Movie({ result }) {
 
               {/* lenght genres imdb */}
               <p className="text-xs md:text-sm">
-                {result.release_date || result.first_air_date} •{" "}
-                {Math.floor(result.runtime / 60)}h {result.runtime % 60}m •{" "}
-                {result.genres.map((genre) => genre.name + " ")} •{" "}
-                {result.vote_average}/10
+                {result?.release_date || result?.first_air_date} •{" "}
+                {Math.floor(result?.runtime / 60)}h {result?.runtime % 60}m •{" "}
+                {result?.genres.map((genre) => genre.name + " ")} •{" "}
+                {result?.vote_average}/10
               </p>
               <h4 className="text-sm md:text-lg max-w-4xl">
-                {result.overview}
+                {result?.overview}
               </h4>
             </div>
           </div>
@@ -89,7 +89,7 @@ function Movie({ result }) {
             <div className="absolute inset-0 bg-black/50 z-50">
               <div className="relative mt-[80px] max-w-[1200px] mx-auto h-[80vh]">
                 <ReactPlayer
-                  url={`${YOUTUBE_URL}${result.videos?.results[index]?.key}`}
+                  url={`${YOUTUBE_URL}${result?.videos?.results[index]?.key}`}
                   width="100%"
                   height="100%"
                   controls

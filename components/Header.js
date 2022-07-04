@@ -17,6 +17,7 @@ function Header({ loggedInUser }) {
   };
 
   const signOut = async () => {
+    router.push("/");
     await auth.signOut();
   };
 
