@@ -1,12 +1,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAB2PGRunqCsOfnYjCwIppEuvnlp_9NVuY",
-  authDomain: "movie-disney.firebaseapp.com",
-  projectId: "movie-disney",
-  storageBucket: "movie-disney.appspot.com",
-  messagingSenderId: "741900939107",
-  appId: "1:741900939107:web:e93c9e6064016e4de92d56",
+  apiKey: "AIzaSyDtJBAIXwRHMAxWoqXEVTfcVyHAtPV6TPI",
+  authDomain: "disney-movie-4dced.firebaseapp.com",
+  projectId: "disney-movie-4dced",
+  storageBucket: "disney-movie-4dced.appspot.com",
+  messagingSenderId: "564217185262",
+  appId: "1:564217185262:web:314e86874f4cb29d4904ff"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
